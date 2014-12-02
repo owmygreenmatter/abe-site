@@ -81,11 +81,11 @@ done
 HTML="$HTML
 			</div>
 			<div id=\"leftside\">
+				<div id=\"leftmenu\"></div>
 				<div>
 					<script src=\"http://feeds2.feedburner.com/ab/mhcD?format=sigpro&amp;openLinks=new\"></script>
 				</div>
 			</div>
-			<div id=\"rightside\"></div>
 			<div id=\"footers\"></div>
 		</div>
 	</body>
