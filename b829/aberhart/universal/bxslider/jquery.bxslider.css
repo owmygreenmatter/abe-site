@@ -26,6 +26,9 @@
 	max-width: 100%;
 	display: block;
 }
+.bx-viewport {
+	overflow:hidden;
+}
 
 /** THEME
 ===================================*/

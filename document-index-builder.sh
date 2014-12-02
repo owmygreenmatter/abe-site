@@ -27,12 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"/b829/aberhart/universal/main.css\"/>
 		<script src=\"/b829/aberhart/universal/jquery-1.11.0.min.js\"></script>
 		<script src=\"/b829/aberhart/universal/menu-importer.js\"></script>
-		<script>
-			\"use strict\";
-			\$( document ).ready(function() {
-				\$(\"#areamenu\").load( \"/b829/aberhart/areamenu-main.html\" );
-			});
-		</script>
 
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"/b829/aberhart/universal/simpletabs.css\"/>
 		<script src=\"/b829/aberhart/universal/simpletabs.js\"></script>
@@ -87,7 +81,6 @@ done
 HTML="$HTML
 			</div>
 			<div id=\"leftside\">
-				<div id=\"areamenu\"></div>
 				<div>
 					<script src=\"http://feeds2.feedburner.com/ab/mhcD?format=sigpro&amp;openLinks=new\"></script>
 				</div>

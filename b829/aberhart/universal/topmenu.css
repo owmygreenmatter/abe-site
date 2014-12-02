@@ -13,22 +13,44 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#topmenuPager {
+	font-size:0;
+	background-color:#00adda;
+	text-align:center;
+}
+#topmenuPager span {
+	cursor:pointer;
+	text-decoration:none;
+	font-size:8pt;
+	display:inline-block;
+	color:#fff;
+	padding:0 22px;
+	line-height:25px;
+	height:25px;
+	border-style:solid;
+	border-color:#fff;
+	border-width:0;
+	border-right-width:2px;
+}
+#topmenuPager span:first-child {
+	border-left-width:2px;
+}
 
 /* This runs the menu */
 /* Menu source, if you are interested http://www.onextrapixel.com/2011/06/03/how-to-create-a-horizontal-dropdown-menu-with-html-css-and-jquery/ */
-#topmenu,
-#topmenu ul {
+.areamenu,
+.areamenu ul {
     list-style: none;
 	padding-left:0px;
 }
-#topmenu {
-    float: left;
+.areamenu {
+	width:100%;
+	text-align:center;
+}
+.areamenu > li {
 	display:inline-block;
 }
-#topmenu > li {
-    float: left;
-}
-#topmenu li a {
+.areamenu li a {
 	display: block;
     height: 25px;
     line-height: 25px;
@@ -36,24 +58,38 @@
 	padding-right:22px;
     text-decoration: none;
 }
-#topmenu ul {
+.areamenu ul {
     position: absolute;
     display: none;
 	z-index: 999;
 }
 
-#topmenu li:hover ul {
+.areamenu li:hover ul {
     display: block;
+}
+.topmenu > .bx-wrapper > .bx-viewport {
+	overflow: visible;
+	border-width:0;
+	left:0px;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+	-moz-box-shadow:none;
+}
+.topmenuHighlight {
+	background-color:#666;
+	height:25px;
+	border-bottom-color:#666;
 }
 
 /* Menu styling */
-
 /* Main menu
 ------------------------------------------*/
-#topmenu {
-    background: #00adda;
-	margin-top:0px;
-	width:100%;
+.areamenu {
+	font-size:0;
+	margin-left:auto;
+	margin-right:auto;
+	background: #666;
+	margin:0;
 	height:25px;
 	color:#fff;
 	border-style:solid;
@@ -62,38 +98,39 @@
 	border-top-width:0px;
 	border-bottom-width:2px;
 }
-#topmenu > li {
+.areamenu > li {
+	font-size:8pt;
 	border-style:solid;
 	border-width:0px;
 	border-right-width:2px;
 	border-color:#fff;
 }
-#topmenu > li > a {
+.areamenu > li:first-child {
+	border-left-width:2px;
+}
+.areamenu > li > a {
     color: #fff;
     font-weight: normal;
 }
-#topmenu > li:hover > a, .topmenuHighlight {
-    background: #666666;
+.areamenu > li:hover > a {
+	background: #00adda;
     color: #fff;
 }
 /* Submenu
- ------------------------------------------*/
-#topmenu ul {
-    background: #f28726;
-	border-color:#fff;
-	border-style:solid;
-	border-width:1px;
-	border-top-width:0px;
-	margin-left:-2px; /* Compensates for the width of the border when alighning the sub-menu */
+ ------------------------------------------ */
+
+.areamenu ul {
+	background-color: #00adda;
 }
-#topmenu ul li a {
+.areamenu ul li a {
     color: #fff;
 	margin-top:auto;
 	margin-bottom:auto;
 	border-style:solid;
 	border-width:0px;
+	text-align:left;
 	border-top-width:0px;
 }
-#topmenu ul li:hover a {
-    background: #ffc97c;
+.areamenu ul li:hover a {
+	background: #666;
 }

@@ -1,58 +1,348 @@
 <!DOCTYPE html>
 <!-- This has to come before any comments (or anything else). Otherwise it kills IE -->
 <!-- Copyright 2014 Tauran Wood, Owen Thiessen -->
-
-<!--  This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
+<!--This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.If not, see <http://www.gnu.org/licenses/>.
+ -->
 
 <!-- For info about changing the website (fixing bugs, etc.) see https://github.com/thirstyice/abe-site -->
 
 <html>
 	<head>
-		<meta charset="UTF-8"/>
+		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="/b829/aberhart/universal/topmenu.css"/>
+		<script src="/b829/aberhart/universal/jquery-1.11.0.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/b829/aberhart/universal/bxslider/jquery.bxslider.css"/>
+		<script src="/b829/aberhart/universal/bxslider/jquery.bxslider.min.js"></script>
 		<script>
-		$(document).ready(function(){document.getElementById(location.href.replace(/.*aberhart\//i,"").replace(/\/.*/i,"").trim()).className="topmenuHighlight";});
-		</script>
+			"use strict"
+			var slider;
+			function setSlide(event) {
+				var slide = event.data.param;
+				slider.goToSlide(slide);
+			}
+			function highlightPager(pager) {
+				$("#topmenuPager").children().removeClass("topmenuHighlight");
+				$("#topmenuPager-" + pager).addClass("topmenuHighlight");
+			}
+			$( document ).ready(function() {
+								var start=0;
+								switch (location.href.replace(/.*aberhart\//i,"").replace(/\/.*/i,"").trim()) {
+															case "departments":
+															start=1;
+															break;
+															case "programs":
+															start=2;
+															break;
+															case "student-activities":
+															start=3;
+															break;
+															case "student-services":
+															start=4;
+															break;
+															case "transportation":
+															start=5;
+															break;
+															case "fees":
+															start=6;
+															break;
+															case "about":
+															start=7;
+															break;
+															}
+															for (var i=0; i<$("#topmenuPager").children().length; i++) {
+															$("#topmenuPager-" + i).click({param:i}, setSlide);
+															// The data map (The "{param:i}" part) took me forever to figure out
+															}
+															  slider=$('.topmenuSlider').bxSlider({ startSlide: start, infiniteLoop: false, controls: false, auto: false, pager: false, useCSS: false, responsive:true, adaptiveHeight:true, onSlideAfter:function($slideElement, oldIndex, newIndex){highlightPager(newIndex);}});
+															var current=slider.getCurrentSlide();
+															highlightPager(current);
+															});
+										</script>
 		<link rel="shortcut icon" href="/b829/aberhart/favicon.ico"/>
 	</head>
 	<body>
-		<ul id="topmenu">
-			<li id="main">
-				<a href="/b829/aberhart/index.htm">home</a>
-			</li>
-			<li id="departments">
-				<a href="/b829/aberhart/departments/departments.html">departments</a>
-			</li>
-			<li id="programs">
-				<a href="/b829/aberhart/programs/programs.html">programs</a>
-			</li>
-			<li id="student-activities">
-				<a href="/b829/aberhart/student-activities/student-activities.html">student activities</a>
-			</li>
-			<li id="student-services">
-				<a href="/b829/aberhart/student-services/guidance.html">student services</a>
-			</li>
-			<li id="fees">
-				<a href="/b829/aberhart/fees/descriptions.html">fees and waivers</a>
-			</li>
-			<li id="transportation">
-				<a href="/b829/aberhart/transportation/transportation.html">transportation</a>
-			</li>
-			<li id="about">
-				<a href="/b829/aberhart/about/about-us.html">about us</a>
-			</li>
-		</ul>
+		<div id="topmenuPager">
+			<span id="topmenuPager-0">Home</span>
+			<span id="topmenuPager-1">Departments</span>
+			<span id="topmenuPager-2">Programs</span>
+			<span id="topmenuPager-3">Student activities</span>
+			<span id="topmenuPager-4">Student services</span>
+			<span id="topmenuPager-5">Transportation</span>
+			<span id="topmenuPager-6">Fees</span>
+			<span id="topmenuPager-7">About us</span>
+			<span id="topmenuPager-8">External links</span>
+		</div>
+		<div class="topmenu">
+			<div class="topmenuSlider">
+				<!-- Home -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/index.htm">Home</a></li>
+						<li onclick=""><a>Calendars <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/main/calendars/google.html">Google Calendar</a></li>
+								<li><a href="/b829/aberhart/main/calendars/abecalendar.html">ABE CBE-style calendar</a></li>
+								<li><a href="http://www.cbe.ab.ca/calendars/default.asp">CBE calendars (External)</a></li>
+								<li><a href="/b829/aberhart/main/calendars/CSI.html">CSI (Career Scene Investigation)</a></li>
+								<li><a href="/b829/aberhart/main/calendars/linking.html">Linking to calendars</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Exams <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/main/exams/exam-schedule.html">Final Exam Schedule</a></li>
+								<li><a href="/b829/aberhart/main/exams/computer-use-signup-instructions.html">Computer Use for Diploma Exams - Sign-up</a></li>
+								<li><a href="/b829/aberhart/main/exams/ell-students-exam-information.html">Exam Information for ELL Students</a></li>
+								<li><a href="/b829/aberhart/main/exams/exam-formatting.html">Guide - How To Format Your Exam</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/main/student-handbook.html">Student Handbook</a></li>
+						<li><a href="/b829/aberhart/main/timetable.html">Timetable</a></li>
+						<li><a href="/b829/aberhart/main/student-bulletin.html">Student Bulletin</a></li>
+						<li onclick=""><a>News Archive<span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/main/news/whats-new/news-archive.html">What's New</a></li>
+								<li><a href="/b829/aberhart/main/news/upcoming/upcoming-archive.html">Upcoming</a></li>
+								<li><a href="/b829/aberhart/main/news/ongoing/ongoing-archive.html">Ongoing</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/main/document-index.html">Index of Documents</a></li>
+					</ul>
+				</div>
+				<!-- Departments -->
+				<div>
+					<ul class="areamenu">
+						<li onclick=""><a>Athletics <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/athletics/general/general.html">General</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/general/friends-of-orange.html">Friends of Orange</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/forms/forms.html">Forms</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/coaches.html">Coaches</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/badminton.html">Badminton</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/basketball.html">Basketball</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/cross-country.html">Cross Country</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/field-hockey.html">Field Hockey</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/football.html">Football</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/rugby.html">Rugby</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/soccer.html">Soccer</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/swim-dive.html">Swim and Dive</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/track-field.html">Track and Field</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/volleyball.html">Volleyball</a></li>
+								<li><a href="/b829/aberhart/departments/athletics/teams/wrestling.html">Wrestling</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/departments/CALM/calm20.html">CALM</a></li>
+						<li onclick=""><a>CTS <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/CTS/automotive.html">Automotive studies</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/comp-sci.html">Computer Science</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/design.html">Design studies</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/fashion.html">Fashion studies</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/finance.html">Financial managment</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/foods.html">Food studies</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/info-pro.html">Information Processing</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/legal.html">Legal studies</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/multimedia.html">Multimedia</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/small-buisness.html">Small Buisness</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/sports-med.html">Sports medicine</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/sports-pro.html">Sports performance</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/woodworking.html">Woodworking</a></li>
+								<li><a href="/b829/aberhart/departments/CTS/off-site.html">Off site CTS</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Fine arts <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/fine-arts/course-descriptions.html">Course descriptions</a></li>
+								<li><a href="/b829/aberhart/departments/fine-arts/brochure.html">Brochure</a></li>
+								<li><a href="/b829/aberhart/departments/fine-arts/music-schedule.html">Music schedule</a></li>
+								<li><a href="/b829/aberhart/departments/fine-arts/wampa/wampa.html">Abe Music Parents Assoc.</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Languages <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/languages/english/english.html">English</a></li>
+								<li><a href="/b829/aberhart/departments/languages/french/french.html">French</a></li>
+								<li><a href="/b829/aberhart/departments/languages/spanish/spanish.html">Spanish</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Mathematics <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/mathematics/mathematics.html">General Information</a></li>
+								<li><a href="/b829/aberhart/departments/mathematics/30-2-careers.html">Math 30-2 Careers</a></li>
+								<li><a href="/b829/aberhart/departments/mathematics/apprenticeship-requirements.html">Apprenticeship Requirements</a></li>
+							</ul>
+						</li>
+						<li onclick="">
+							<a>Phys Ed<span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/departments/phys-ed/phys-ed.html">About Phys. ed</a></li>
+								<li><a href="/b829/aberhart/departments/phys-ed/schedules/schedules.html">Schedules</a></li>
+								<li><a href="/b829/aberhart/departments/phys-ed/forms/forms.html">Forms</a></li>
+								<li><a href="/b829/aberhart/departments/phys-ed/venues/venues.html">Venues</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/departments/sciences/sciences.html">Sciences</a></li>
+						<li><a href="/b829/aberhart/departments/social-studies/social-studies.html">Social studies</a></li>
+						<li><a href="/b829/aberhart/departments/special-education/special-education.html">Special education</a></li>
+					</ul>
+				</div>
+				<!-- Programs -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/programs/programs.html">Programs</a></li>
+						<li onclick=""><a>Advanced Placement<span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/programs/advanced-placement/advanced-placement-courses.html">Courses</a></li>
+								<li><a href="/b829/aberhart/programs/advanced-placement/advanced-placement-schedule.html">Schedules for 2014-2015</a></li>
+								<li><a href="/b829/aberhart/programs/advanced-placement/advanced-placement-exam-dates.html">Exam Dates</a></li>
+								<li><a href="https://apstudent.collegeboard.org/home">College board website (External)</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/programs/french-immersion/french-immersion.html">French Immersion</a></li>
+						<li><a href="/b829/aberhart/programs/spanish-bilingual/spanish-bilingual.html">Spanish Bilingual</a></li>
+						<li><a href="/b829/aberhart/programs/intl-students/intl-students.html">International Students</a></li>
+					</ul>
+				</div>
+				<!-- Student activities -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/student-activities/student-activities.html">Student activities</a></li>
+						<li onclick=""><a>Debate <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/student-activities/debate/welcome-info.html">Welcome info</a></li>
+								<li><a href="/b829/aberhart/student-activities/debate/forms.html">Forms</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/student-activities/queer-straight-alliance.html">Queer-straight alliance</a></li>
+						<li><a href="/b829/aberhart/student-activities/film-fest/film-fest.html">Film fest</a></li>
+						<li><a href="/b829/aberhart/student-activities/advocate/advocate.html">The Advocate</a></li>
+						<li><a href="http://abeanime.tumblr.com/">Anime Club (External)</a></li>
+						<li><a href="/b829/aberhart/student-activities/tech-club/tech-club.htm">The Tech Club</a></li>
+					</ul>
+				</div>
+				<!-- Student services -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/student-services/guidance.html">Student services</a></li>
+						<li onclick=""><a>Prospective students <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/student-services/registration/introduction-to-high-school.html">Introduction to High School</a></li>
+								<li><a href="/b829/aberhart/student-services/registration/information-for-parents.html">Information for Parents</a></li>
+								<li><a href="/b829/aberhart/student-services/registration.html">2015-16 Registration</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Forms <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/student-services/forms/external-records-request.html">Out of CBE student records request</a></li>
+								<li><a href="/b829/aberhart/student-services/forms/high-school-transfer.html">High school transfer</a></li>
+								<li><a href="/b829/aberhart/student-services/forms/medical-condition.html">Physical / medical condition</a></li>
+								<li><a href="/b829/aberhart/student-services/forms/severe-allergy.html">Severe allergy</a></li>
+								<li><a href="/b829/aberhart/student-services/forms/consent-to-publish.html">Consent to post/publish work</a></li>
+								<li><a href="/b829/aberhart/student-services/forms/media-coverage.html">General media coverage</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Scholarships ▹</a>
+							<ul>
+								<li><a href="/b829/aberhart/student-services/scholarships/scholarship-list.html">Available scholarships</a></li>
+								<li><a href="/b829/aberhart/student-services/scholarships/scholarships.html">Scholarships</a></li>
+								<li><a href="/b829/aberhart/student-services/scholarships/scholarship-5ws.html">The 5Ws of Scholarships</a></li>
+								<li><a href="/b829/aberhart/student-services/scholarships/4-step-process.html">The four-step process</a></li>
+								<li><a href="/b829/aberhart/student-services/scholarships/scholarship-tips.html">Scholarship tips</a></li>
+								<li><a href="/b829/aberhart/student-services/scholarships/scholarship-info.html">More info</a></li>
+							</ul>
+						</li>
+						<li onclick=""><a>Grade 12 info ▹</a>
+							<ul>
+								<li><a href="/b829/aberhart/student-services/diploma.html">Diploma requirements</a></li>
+								<li><a href="/b829/aberhart/student-services/exitpackage.html">Exit package</a></li>
+								<li><a href="/b829/aberhart/student-services/gr12-info.html">Grade 12 information</a></li>
+								<li><a href="/b829/aberhart/student-services/post-secondary-visits.html">Post secondary visits</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/student-services/community-resources.html">Community resources</a></li>
+						<li><a href="/b829/aberhart/student-services/career-center.html">Career center</a></li>
+						<li><a href="/b829/aberhart/student-services/learning-centre.html">Learning centre</a></li>
+					</ul>
+				</div>
+				<!-- Transportation -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/transportation/transportation.html">Transportation</a></li>
+						<li><a href="/b829/aberhart/transportation/rebate-info.html">Rebate info</a></li>
+						<li><a href="/b829/aberhart/transportation/rebate-process.html">Rebate process</a></li>
+						<li><a href="http://www.calgarytransit.com">Main transit website(External)</a></li>
+						<li><a href="http://www.cbe.ab.ca/Parents/forms.asp#transport">CBE Forms (External)</a></li>
+					</ul>
+				</div>
+				<!-- Fees -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/fees/descriptions.html">Fees and Waivers</a></li>
+						<li><a href="http://www.cbe.ab.ca/parents/fees.asp">School fees/waivers (CBE)</a></li>
+						<li><a href="/b829/aberhart/fees/report.html">School fees report</a></li>
+						<li><a href="/b829/aberhart/fees/payment.html">Payment sheet</a></li>
+						<li><a href="/b829/aberhart/fees/access-payment.html">Payment sheet - Access class</a></li>
+						<li><a href="/b829/aberhart/fees/descriptions.html">School fee descriptions</a></li>
+					</ul>
+				</div>
+				<!-- About us -->
+				<div>
+					<ul class="areamenu">
+						<li><a href="/b829/aberhart/about/about-us.html">About us</a></li>
+						<li onclick=""><a>Contact <span>▹</span></a>
+							<ul>
+								<li><a href="/b829/aberhart/about/contact/admin.html">Administration</a></li>
+								<li><a href="/b829/aberhart/about/contact/teachers.html">Teachers</a></li>
+								<li><a href="/b829/aberhart/about/contact/learning-leaders.html">Learning leaders</a></li>
+								<li><a href="/b829/aberhart/about/contact/additional-staff.html">Additional staff</a></li>
+								<li><a href="/b829/aberhart/about/contact/principal-advisory-council.html">Principal's Advisory Council</a></li>
+								<li><a href="mailto:gjwehnes@cbe.ab.ca">Web Administrator (email)</a></li>
+							</ul>
+						</li>
+						<li><a href="/b829/aberhart/about/parent-council/parent-council.html">Parent council</a></li>
+						<li><a href="http://www.cbe.ab.ca/schools/view.asp?id=100">School profile (External)</a></li>
+					</ul>
+				</div>
+				<!-- External links -->
+				<div>
+					<ul class="areamenu">
+						<li>
+							<a href="http://d2l.cbe.ab.ca">Desire2Learn</a>
+						</li>
+						<li>
+							<a href="https://sirswebapps.cbe.ab.ca/HomeLogic">HomeLogic</a>
+						</li>
+						<li>
+							<a href="https://accounts.google.com/ServiceLogin?hl=en&continue=https://www.google.ca/">Gmail (Student email)</a>
+						</li>
+						<li>
+							<a href="http://www.cbe.ab.ca/Students/student_mail.asp">Gmail setup info</a>
+						</li>
+						<li>
+							<a href="https://publicapps.cbe.ab.ca/passwordreset">CBE password reset tool</a>
+						</li>
+						<li>
+							<a href="http://www.cbe.ab.ca/Parents/forms.asp">CBE Forms</a>
+						</li>
+						<li>
+							<a href="https://docs.google.com/document/d/12LpvIZBsQ8XRNYYaH10wx7TvZBTwwSGfstZYne-6VHg/edit?usp=sharing&pli=1">Alberta CORE</a>
+						</li>
+						<li>
+							<a href="http://alberta.exambank.com/">Exam Bank</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
